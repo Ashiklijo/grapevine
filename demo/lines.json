@@ -1,0 +1,19 @@
+[
+  {"id": "01", "tts": "Asha is deaf. On Saturday, her community votes on its future. Without an interpreter, she can't take part.", "text": "Asha is deaf. On Saturday, her community votes on its future. Without an interpreter, she can't take part.", "ex": 0.65, "cfg": 0.4},
+  {"id": "02", "tts": "Nobody on the council knows an interpreter. But somebody knows somebody, who does.", "text": "Nobody on the council knows an interpreter. But somebody knows somebody who does.", "ex": 0.7, "cfg": 0.38},
+  {"id": "03", "tts": "This is Grapevine.", "text": "This is Grapevine.", "ex": 0.55, "cfg": 0.45},
+  {"id": "04", "tts": "The community's treasury pays whoever gets it done. And everyone who passed the word along.", "text": "The community's treasury pays whoever gets it done. And everyone who passed the word along.", "ex": 0.65, "cfg": 0.4},
+  {"id": "05", "tts": "Noor, on the council, posts the quest. The reward is two near tokens, from the community's own Sputnik Dow.", "text": "Noor, on the council, posts the quest. The reward is 2 NEAR tokens, from the community's own Sputnik DAO.", "ex": 0.5, "cfg": 0.45},
+  {"id": "06", "tts": "Bee sees it. She doesn't know an interpreter. But her friend Kofi coaches a Deaf football team. So she passes it on.", "text": "Bea sees it. She doesn't know an interpreter. But her friend Kofi coaches a Deaf football team. So she passes it on.", "ex": 0.6, "cfg": 0.4},
+  {"id": "07", "tts": "Kofi knows exactly who to ask.", "text": "Kofi knows exactly who to ask.", "ex": 0.6, "cfg": 0.42},
+  {"id": "08", "tts": "Rosa is an interpreter. She has never heard of this community. She says yes.", "text": "Rosa is an interpreter. She has never heard of this community. She says yes.", "ex": 0.65, "cfg": 0.4},
+  {"id": "09", "tts": "Saturday comes. Rosa interprets the whole meeting. And Asha votes.", "text": "Saturday comes. Rosa interprets the whole meeting. And Asha votes.", "ex": 0.8, "cfg": 0.35},
+  {"id": "10", "tts": "Noor accepts, and the reward splits itself. Half to Rosa. A quarter to Kofi. An eighth to Bee.", "text": "Noor accepts, and the reward splits itself. Half to Rosa. A quarter to Kofi. An eighth to Bea.", "ex": 0.6, "cfg": 0.4},
+  {"id": "11", "tts": "Bee has been paid here before, so hers arrives at once. Rosa and Kofi are new, so a second council member signs off.", "text": "Bea has been paid here before, so hers arrives at once. Rosa and Kofi are new, so a second council member signs off.", "ex": 0.55, "cfg": 0.42},
+  {"id": "12", "tts": "Every payment is an ordinary transfer, from the Dow's own treasury. Grapevine never holds the money.", "text": "Every payment is an ordinary transfer from the DAO's own treasury. Grapevine never holds the money.", "ex": 0.55, "cfg": 0.45},
+  {"id": "13", "tts": "And each of them now has a record, tied to their near account. Next time, they are trusted a little more.", "text": "And each of them now has a record, tied to their NEAR account. Next time, they are trusted a little more.", "ex": 0.55, "cfg": 0.42},
+  {"id": "14", "tts": "Can you cheat? Name yourself as the person who told you. Refused. Open a quest that pays you. Refused.", "text": "Can you cheat? Name yourself as the person who told you. Refused. Open a quest that pays you. Refused.", "ex": 0.65, "cfg": 0.4},
+  {"id": "15", "tts": "Every pass is a signed post on near social. Even the contract posts for itself. No bots. No server.", "text": "Every pass is a signed post on near.social. Even the contract posts for itself. No bots. No server.", "ex": 0.55, "cfg": 0.45},
+  {"id": "16", "tts": "Three people who had never met, just got paid for making sure Asha was heard.", "text": "Three people who had never met just got paid for making sure Asha was heard.", "ex": 0.8, "cfg": 0.35},
+  {"id": "17", "tts": "Grapevine. Someone you know, knows someone.", "text": "Grapevine. Someone you know knows someone.", "ex": 0.65, "cfg": 0.42}
+]

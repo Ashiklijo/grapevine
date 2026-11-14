@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Grapevine demo: story cards</title>
+    <style>
+      :root {
+        --paper: #faf7f1;
+        --ink: #1d1b16;
+        --muted: #6b665c;
+        --line: #e2dbcc;
+        --vine: #2f6b3a;
+        --vine-soft: #e4f0e3;
+        --grape: #5b3d8a;
+        --gold: #9a5f0c;
+        --gold-soft: #fbf0d9;
+        --red: #9b2c2c;
+        --red-soft: #fbe9e7;
+        --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+        --sans: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      /* The recorder draws a pointer on every page. These cards have nothing to point at. */
+      #demo-pointer { display: none !important; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+      .scene { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 0 150px 150px; }
+      .scene.on { display: flex; }
+      .fade { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+      .fade.in { opacity: 1; transform: none; }
+      h1 { font: 600 76px/1.1 var(--serif); letter-spacing: -0.015em; margin: 0; }
+      .eyebrow { font: 600 26px var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--vine); margin: 0 0 18px; }
+      .face { display: grid; place-items: center; border-radius: 50%; color: #fff; font-weight: 700; flex: none; }
+
+      /* Asha */
+      #asha { gap: 90px; }
+      .day { width: 520px; background: #fff; border: 2px solid var(--line); border-radius: 30px; overflow: hidden; box-shadow: 0 24px 60px rgba(40, 30, 10, 0.1); }
+      .day header { background: var(--grape); color: #fff; font: 700 34px var(--sans); letter-spacing: 0.14em; text-align: center; padding: 20px; }
+      .day .body { padding: 34px 40px 40px; }
+      .day .time { font: 600 110px/1 var(--serif); }
+      .day .what { font: 600 38px/1.2 var(--serif); margin-top: 18px; }
+      .day .sub { font-size: 30px; color: var(--muted); margin-top: 8px; }
+      .person { max-width: 760px; }
+      .person .row { display: flex; align-items: center; gap: 28px; }
+      .person .face { width: 132px; height: 132px; font-size: 54px; background: #a8551f; }
+      .person h2 { font: 600 70px var(--serif); margin: 0; }
+      .person p { font-size: 34px; line-height: 1.35; color: #3d3a33; margin: 26px 0 0; }
+      .badge { display: inline-block; margin-top: 34px; padding: 14px 28px; border-radius: 999px; font: 700 34px var(--sans); background: var(--red-soft); color: var(--red); border: 2px solid #efc2bd; }
+
+      /* The chain */
+      #chain { flex-direction: column; gap: 70px; }
+      .people { display: flex; align-items: flex-start; gap: 0; }
+      .node { width: 300px; text-align: center; }
+      .node .face { width: 124px; height: 124px; font-size: 48px; margin: 0 auto 18px; }
+      .node b { display: block; font: 600 34px var(--serif); }
+      .node span { display: block; font-size: 26px; color: var(--muted); margin-top: 4px; }
+      .join { width: 150px; height: 124px; display: flex; align-items: center; }
+      .join i { display: block; height: 8px; width: 0; border-radius: 4px; background: var(--vine); transition: width 0.9s ease; }
+      .join.in i { width: 100%; }
+      .unknown .face { background: #cfc7b6; color: #5a554b; }
+      .found .face { background: var(--vine); }
+
+      /* Saturday */
+      #saturday { flex-direction: column; gap: 46px; }
+      .results { display: grid; gap: 22px; width: 1180px; }
+      .result { display: flex; align-items: center; gap: 28px; background: #fff; border: 2px solid var(--line); border-radius: 26px; padding: 26px 34px; font-size: 40px; }
+      .result .face { width: 92px; height: 92px; font-size: 36px; }
+      .result .tick { margin-left: auto; font: 700 34px var(--sans); color: var(--vine); background: var(--vine-soft); padding: 10px 24px; border-radius: 999px; }
+
+      /* The close */
+      #close { flex-direction: column; text-align: center; gap: 26px; padding-bottom: 60px; }
+      #close .mark { display: flex; align-items: center; gap: 26px; font: 600 150px var(--serif); letter-spacing: -0.02em; }
+      #close .tag { font: 500 58px var(--serif); color: #3d3a33; }
+      #close .small { font-size: 28px; color: var(--muted); line-height: 1.5; margin-top: 40px; }
+    </style>
+  </head>
+  <body>
+    <section class="scene" id="asha">
+      <div class="day fade" data-step="0">
+        <header>SATURDAY</header>
+        <div class="body">
+          <div class="time">10:00</div>
+          <div class="what">Members' meeting</div>
+          <div class="sub">The vote on the new shop</div>
+        </div>
+      </div>
+      <div class="person">
+        <div class="row fade" data-step="0">
+          <div class="face">A</div>
+          <h2>Asha</h2>
+        </div>
+        <p class="fade" data-step="0">Member of Riverside Food Co-op since 2019. Deaf. She follows meetings through a sign-language interpreter.</p>
+        <div class="badge fade" data-step="1">Nobody has booked an interpreter</div>
+      </div>
+    </section>
+
+    <section class="scene" id="chain">
+      <h1 class="fade" data-step="0">Nobody on the council knows an interpreter.</h1>
+      <div class="people">
+        <div class="node fade" data-step="0"><div class="face" style="background: #1d1b16">NR</div><b>Noor</b><span>on the council</span></div>
+        <div class="join" data-step="1"><i></i></div>
+        <div class="node unknown fade" data-step="1"><div class="face">?</div><b>somebody</b><span>knows</span></div>
+        <div class="join" data-step="2"><i></i></div>
+        <div class="node unknown fade" data-step="2"><div class="face">?</div><b>somebody</b><span>who knows</span></div>
+        <div class="join" data-step="3"><i></i></div>
+        <div class="node found fade" data-step="3"><div class="face">✓</div><b>an interpreter</b><span>free on Saturday</span></div>
+      </div>
+    </section>
+
+    <section class="scene" id="saturday">
+      <div>
+        <p class="eyebrow fade" data-step="0" style="text-align: center">Saturday, 10:00 · the hall on Mill Lane</p>
+        <h1 class="fade" data-step="0" style="text-align: center">The meeting happens.</h1>
+      </div>
+      <div class="results">
+        <div class="result fade" data-step="1"><div class="face" style="background: #2f6b3a">RD</div><span>Rosa interprets every word</span><span class="tick">2 hours</span></div>
+        <div class="result fade" data-step="2"><div class="face" style="background: #a8551f">A</div><span>Asha speaks, and votes</span><span class="tick">✓ voted</span></div>
+      </div>
+    </section>
+
+    <section class="scene" id="close">
+      <div class="mark fade" data-step="0">
+        <svg viewBox="0 0 32 32" width="170" height="170" aria-hidden="true">
+          <circle cx="11" cy="13" r="6" fill="#5b3d8a" />
+          <circle cx="21" cy="13" r="6" fill="#5b3d8a" />
+          <circle cx="16" cy="22" r="6" fill="#5b3d8a" />
+          <path d="M16 8 C16 4 19 2 23 2" stroke="#2f6b3a" stroke-width="2.5" fill="none" stroke-linecap="round" />
+        </svg>
+        Grapevine
+      </div>
+      <div class="tag fade" data-step="1">Someone you know knows someone.</div>
+      <div class="small fade" data-step="2">
+        Live on NEAR testnet, on a Sputnik DAO, with near.social. Test tokens only.<br />
+        The people in this video are invented. The narration is an AI voice.
+      </div>
+    </section>
+
+    <script>
+      // show("asha") switches scene. step(1) reveals everything marked with that step or lower.
+      window.show = (id) => {
+        for (const s of document.querySelectorAll(".scene")) s.classList.toggle("on", s.id === id);
+        for (const el of document.querySelectorAll(".in")) el.classList.remove("in");
+      };
+      window.step = (n) => {
+        const scene = document.querySelector(".scene.on");
+        for (const el of scene.querySelectorAll("[data-step]")) if (Number(el.dataset.step) <= n) el.classList.add("in");
+      };
+      const want = new URLSearchParams(location.search);
+      if (want.get("scene")) {
+        window.show(want.get("scene"));
+        requestAnimationFrame(() => window.step(Number(want.get("step") ?? 9)));
+      }
+    </script>
+  </body>
+</html>

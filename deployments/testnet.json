@@ -1,0 +1,39 @@
+{
+  "network": "testnet",
+  "contract": "v1.grapevine-hq.testnet",
+  "dao": "riverside-coop.sputnikv2.testnet",
+  "factory": "sputnikv2.testnet",
+  "hq": "grapevine-hq.testnet",
+  "site": "",
+  "social": "social",
+  "people": {
+    "council": [
+      "noor.grapevine-hq.testnet",
+      "tomas.grapevine-hq.testnet"
+    ],
+    "keeper": "keeper.grapevine-hq.testnet",
+    "others": [
+      "bea.grapevine-hq.testnet",
+      "kofi.grapevine-hq.testnet",
+      "rosa.grapevine-hq.testnet",
+      "dev.grapevine-hq.testnet",
+      "mallory.grapevine-hq.testnet",
+      "sock.grapevine-hq.testnet"
+    ]
+  },
+  "proposals": {
+    "role": 0,
+    "board": 1
+  },
+  "txs": {
+    "deploy": "FL4zRcxXjwUQ9CieXGJx4N87JNZq2b2eZbSVJL6p653e",
+    "create_dao": "8TcL3msQ5C7DDkv1NJeJfmPRPsEkDaGEq4VAizBriUH3",
+    "fund_treasury": "GKB3QgbwNodesNWqnSpJqXtuxn5D8eDsDRKEM4cR3p2u",
+    "propose_0": "6No3KQfDEsHazQfWEDva9Zoujg6kMkasmYHt5A9rjrmM",
+    "install_role_vote_noor": "G3qpqa8NRjbjJCQm77bG87nWEdwUHzEWqS5farHAtFq9",
+    "install_role_vote_tomas": "5QbaP438FbMXpBxvvayukgQUYX5cg1CuDr3pHik2K2EB",
+    "propose_1": "7PuUpbumgd9GZPxejWcKZRKNjZo2XtMy2MFpvLRga32C",
+    "create_board_vote_noor": "2Vk98yr2Y19eYtRDq8X3Dv3p6nuXdrAQt3ECHsFrsmy4",
+    "create_board_vote_tomas": "G2DPEYTyKfV8xjeogYQ78YHr17w3eJrMSKWkJu8yXWkq"
+  }
+}

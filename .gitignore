@@ -1,0 +1,9 @@
+node_modules/
+contract/target/
+data/bounties.json
+demo/out/
+demo/__pycache__/
+.claude/
+*.env
+.env*
+*.log

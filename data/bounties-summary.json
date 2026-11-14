@@ -1,0 +1,12 @@
+{
+  "fetched_at": "2026-11-11T09:13:13Z",
+  "factory": "sputnik-dao.near",
+  "daos_read": 2122,
+  "daos_unreadable": 0,
+  "daos_that_ever_posted_a_bounty": 77,
+  "bounties_posted": 215,
+  "bounties_done_every_time_offered": 60,
+  "bounties_with_unpaid_slots": 155,
+  "share_with_unpaid_slots": 0.721,
+  "daos_where_no_bounty_was_ever_finished": 59
+}

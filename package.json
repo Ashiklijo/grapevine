@@ -1,0 +1,23 @@
+{
+  "name": "grapevine",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Word-of-mouth quests for Sputnik DAOs: the treasury pays whoever gets it done, and everyone who passed the word along.",
+  "license": "MIT",
+  "scripts": {
+    "site": "node scripts/serve.mjs",
+    "demo": "node scripts/serve.mjs --demo",
+    "verify": "node scripts/verify.mjs",
+    "e2e": "node scripts/e2e.mjs",
+    "try": "node scripts/try.mjs",
+    "scout": "node scripts/scout.mjs",
+    "test": "node --test scripts/"
+  },
+  "dependencies": {
+    "near-api-js": "7.4.0"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.65.0"
+  }
+}

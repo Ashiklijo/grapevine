@@ -1,0 +1,601 @@
+{
+  "ran_at": "2026-11-14T06:14:29.298Z",
+  "network": "testnet",
+  "contract": "v1.grapevine-hq.testnet",
+  "dao": "riverside-coop.sputnikv2.testnet",
+  "version": "1.0.0",
+  "passed": 102,
+  "failed": 0,
+  "evidence": {
+    "quests": {
+      "A": "11",
+      "B": "12",
+      "C": "14",
+      "D": "15",
+      "F": 17
+    },
+    "proposals": {
+      "A_doer": 13,
+      "A_first_relay": 14,
+      "A_second_relay": 15,
+      "B_doer": 16,
+      "resume": 19,
+      "F_doer": 21
+    },
+    "posts": {
+      "pass": "y00ev1.grapevine-hq.testnet/1794636307560",
+      "quest": "v1.grapevine-hq.testnet/1794636207005"
+    }
+  },
+  "checks": [
+    {
+      "name": "the board reports a full install",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "stewards are the DAO's own council",
+      "ok": true,
+      "detail": "noor.grapevine-hq.testnet, tomas.grapevine-hq.testnet"
+    },
+    {
+      "name": "a steward opens a quest inside the caps",
+      "ok": true,
+      "detail": "quest 11",
+      "tx": "https://testnet.nearblocks.io/txns/4CQ2g5Wd2gV17yBjVGENTonp6tAth1zUUmzCmDcxqE7S"
+    },
+    {
+      "name": "the quest remembers the sponsor's own near.social post",
+      "ok": true,
+      "detail": "noor.grapevine-hq.testnet/1794636199986"
+    },
+    {
+      "name": "the contract announced the quest from its own account",
+      "ok": true,
+      "detail": "v1.grapevine-hq.testnet/1794636207005"
+    },
+    {
+      "name": "the reward is reserved in the period's budget",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "an account passes the quest on, straight from the sponsor",
+      "ok": true,
+      "detail": "",
+      "tx": "https://testnet.nearblocks.io/txns/6FgR6tPcCMVwHjS4xdFTexP81QkyGABJT12ZgjoDJjif"
+    },
+    {
+      "name": "a second account passes it on and names who it heard it from",
+      "ok": true,
+      "detail": "post y00ev1.grapevine-hq.testnet/1794636307560",
+      "tx": "https://testnet.nearblocks.io/txns/Ec9mVzqtpHpMf6bkaiQC4Aov7XKNrNifimfhAvSwRNTF"
+    },
+    {
+      "name": "passing on twice is refused, so nobody can change who they heard it from",
+      "ok": true,
+      "detail": "ERR_ALREADY_ON_THE_VINE",
+      "tx": "https://testnet.nearblocks.io/txns/9e43fv3ypsdBqJXWoWnwgeNW61qKmjRYozJDR5B73Ucp"
+    },
+    {
+      "name": "naming yourself as the referrer is refused",
+      "ok": true,
+      "detail": "ERR_SELF_REFERRAL",
+      "tx": "https://testnet.nearblocks.io/txns/HTBxU5vVkp87U4jhiz5yRbbtZWV538NMwnocQCh345AN"
+    },
+    {
+      "name": "naming a referrer who is not on the vine is refused",
+      "ok": true,
+      "detail": "ERR_UNKNOWN_REFERRER",
+      "tx": "https://testnet.nearblocks.io/txns/2LGqaKRFUzG3kr1HkGhwfUPGt86wVXZTG76g7MvUn4HL"
+    },
+    {
+      "name": "the sponsor cannot join their own quest",
+      "ok": true,
+      "detail": "ERR_SPONSOR_CANNOT_JOIN",
+      "tx": "https://testnet.nearblocks.io/txns/DfaYmEmbkJU8znDMwHKtghxPBrAwkJGz7x1syzXPoAwR"
+    },
+    {
+      "name": "a pass without its storage deposit is refused",
+      "ok": true,
+      "detail": "ERR_ATTACH_STORAGE_DEPOSIT",
+      "tx": "https://testnet.nearblocks.io/txns/WaJ2wkoexHeFS4xhoiWDaotyLhwMTJqaVyeK5Dyb9mF"
+    },
+    {
+      "name": "the doer claims, joining the vine under the account that told them",
+      "ok": true,
+      "detail": "",
+      "tx": "https://testnet.nearblocks.io/txns/7XvKdDGLB8bu8kDzkDaDrjQbADGGxXUd2ZCpEgRUWjjw"
+    },
+    {
+      "name": "a claim costs about a cent of storage and gas, and the rest of the deposit comes back",
+      "ok": true,
+      "detail": "0.00509 NEAR"
+    },
+    {
+      "name": "claiming twice is refused",
+      "ok": true,
+      "detail": "ERR_ALREADY_CLAIMED",
+      "tx": "https://testnet.nearblocks.io/txns/H3pC1P4fpRUdG74Gtw9ev98JbPwHdxbssQpFHWoAAGs4"
+    },
+    {
+      "name": "the split is half to the doer, then a quarter, then an eighth",
+      "ok": true,
+      "detail": "x00ev1:0.1:Countersign y00ev1:0.05:Countersign z00ev1:0.025:Countersign"
+    },
+    {
+      "name": "what the split leaves over stays in the treasury",
+      "ok": true,
+      "detail": "0.025"
+    },
+    {
+      "name": "with no record, every share needs a second steward",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "a steward who is not the sponsor cannot accept the claim",
+      "ok": true,
+      "detail": "ERR_NOT_THE_SPONSOR",
+      "tx": "https://testnet.nearblocks.io/txns/5z2wWywcQXT1cyRn72VocTajSiD1ZBHd7xUQvq3DsxKr"
+    },
+    {
+      "name": "an outsider cannot accept a claim",
+      "ok": true,
+      "detail": "ERR_NOT_A_STEWARD",
+      "tx": "https://testnet.nearblocks.io/txns/FVgvfQPEJ2Qi6t67fXZD9UfYr9UoGdVt2sexvhRuF6Ps"
+    },
+    {
+      "name": "an account that never claimed cannot be accepted",
+      "ok": true,
+      "detail": "ERR_NO_CLAIM",
+      "tx": "https://testnet.nearblocks.io/txns/yFb62ddy3eHrnvjC7ZiYQ6t1SiA3QU57zEVVAqdY6GD"
+    },
+    {
+      "name": "leaving out an account that is not on the chain is refused",
+      "ok": true,
+      "detail": "ERR_LEFT_OUT_NOT_ON_THE_CHAIN",
+      "tx": "https://testnet.nearblocks.io/txns/CfXAKqQY5urvheXtw13PfK7r2PmFhzssxLTyVxcMRt8p"
+    },
+    {
+      "name": "the sponsor accepts the claim and three payments are decided",
+      "ok": true,
+      "detail": "payments 12, 13, 14",
+      "tx": "https://testnet.nearblocks.io/txns/4juEgSfNwjkDchU3PYqUEA514zWV5AuRbCDKfFkUqCTp"
+    },
+    {
+      "name": "the unspent part of the reward goes back to the budget",
+      "ok": true,
+      "detail": "0.175"
+    },
+    {
+      "name": "nobody can push a payment that still needs a countersign",
+      "ok": true,
+      "detail": "ERR_NEEDS_COUNTERSIGN",
+      "tx": "https://testnet.nearblocks.io/txns/H8X59KhwtBiPoAW5nkruS13MgC2VWoz93YVF8Q9d1ncP"
+    },
+    {
+      "name": "the steward who accepted cannot also countersign",
+      "ok": true,
+      "detail": "ERR_SAME_STEWARD",
+      "tx": "https://testnet.nearblocks.io/txns/3dUYouNnn9dzPwhZsTuvhAK4JxDW6gDBZjd2L8yUzZvh"
+    },
+    {
+      "name": "an outsider cannot countersign",
+      "ok": true,
+      "detail": "ERR_NOT_A_STEWARD",
+      "tx": "https://testnet.nearblocks.io/txns/7Q6qu6daKLRZXmpQ43yAzBXwxGmzorYzqmbkpf4CtkiS"
+    },
+    {
+      "name": "a callback cannot be called from outside",
+      "ok": true,
+      "detail": "private",
+      "tx": "https://testnet.nearblocks.io/txns/2Djp3UzxFfu5eytHGxv6wMdvMLfGvsJGQ24vyUKstqsX"
+    },
+    {
+      "name": "a second steward countersigns the doer's payment, and Grapevine files and votes",
+      "ok": true,
+      "detail": "proposal 13",
+      "tx": "https://testnet.nearblocks.io/txns/3PhqN581J4hcdmvtZEsYShbtTv5a4xHuHw9BJUvE7BXp"
+    },
+    {
+      "name": "a second steward countersigns the first relay's payment, and Grapevine files and votes",
+      "ok": true,
+      "detail": "proposal 14",
+      "tx": "https://testnet.nearblocks.io/txns/wXdsc95azzwn4zESBMwRCkjVotFWHjD32DqoGCaXzZp"
+    },
+    {
+      "name": "a second steward countersigns the second relay's payment, and Grapevine files and votes",
+      "ok": true,
+      "detail": "proposal 15",
+      "tx": "https://testnet.nearblocks.io/txns/7jUtDyDLYFs9UdHSTjsPjW7erztMuBreMY4rGKdMSyMj"
+    },
+    {
+      "name": "the payment is an ordinary Transfer proposal on the DAO",
+      "ok": true,
+      "detail": "* Title: Grapevine quest #11 - E2E 00ev1: find someone who can fix the walk-in fridge <br>* Notes: 0.1 NEAR to x00ev1.grapevine-hq.testnet for getting it done. Claim accepted by noor.grapevine-hq.testnet. Countersigned by tomas.grapevine-hq.testnet. Grapevine payment 12."
+    },
+    {
+      "name": "Grapevine's vote alone passed it",
+      "ok": true,
+      "detail": "{\"v1.grapevine-hq.testnet\":\"Approve\"}"
+    },
+    {
+      "name": "the proposal text is in the form Trezu reads",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "an approved proposal is not counted as paid until the transfer has had time to run",
+      "ok": true,
+      "detail": "skipped: the RPC was slow and the vote was already 20 s old (the contract tests cover this rule)"
+    },
+    {
+      "name": "payment 12 is confirmed paid on a later look",
+      "ok": true,
+      "detail": "approved by the DAO",
+      "tx": "https://testnet.nearblocks.io/txns/1cKB5e92VYLgGJ2HPXkLawDhKDniX6KEfmAi7wjpMWw"
+    },
+    {
+      "name": "payment 13 is confirmed paid on a later look",
+      "ok": true,
+      "detail": "approved by the DAO",
+      "tx": "https://testnet.nearblocks.io/txns/TdegTTzoS5Wgo48JaQ6hH81xQcAf1yyLM4rUKb2JAYr"
+    },
+    {
+      "name": "payment 14 is confirmed paid on a later look",
+      "ok": true,
+      "detail": "approved by the DAO",
+      "tx": "https://testnet.nearblocks.io/txns/7d39mGTe4EUV33xRgRtFHZDiDaGfaN2Vbi1WS5vrbfY2"
+    },
+    {
+      "name": "the doer received exactly half the reward",
+      "ok": true,
+      "detail": "0.1"
+    },
+    {
+      "name": "the nearest relay received exactly a quarter",
+      "ok": true,
+      "detail": "0.05"
+    },
+    {
+      "name": "the next relay received exactly an eighth",
+      "ok": true,
+      "detail": "0.025"
+    },
+    {
+      "name": "the treasury paid out 0.175 NEAR and no more",
+      "ok": true,
+      "detail": "0.175"
+    },
+    {
+      "name": "the quest is done",
+      "ok": true,
+      "detail": "Done"
+    },
+    {
+      "name": "every bond came back to the board's float",
+      "ok": true,
+      "detail": "float moved by 0.01506"
+    },
+    {
+      "name": "the doer's record shows one quest done",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "a relay's record shows one quest carried",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "the earned limit is a step per point, but never more than a second steward has approved for that account",
+      "ok": true,
+      "detail": "step 0.25, approved 0.1, limit 0.1"
+    },
+    {
+      "name": "the point is traceable to a finished quest and a paid DAO proposal",
+      "ok": true,
+      "detail": "quest 11, proposal 13"
+    },
+    {
+      "name": "the contract's own post about the quest is served by FastData",
+      "ok": true,
+      "detail": "v1.grapevine-hq.testnet/1794636207005"
+    },
+    {
+      "name": "its author is the contract, and it mentions the DAO",
+      "ok": true,
+      "detail": "New quest from @riverside-coop.sputnikv2.testnet: E2E 00ev1: find someone who can fix the "
+    },
+    {
+      "name": "a person's pass is a near.social post that quotes the post it came from",
+      "ok": true,
+      "detail": "quote noor.grapevine-hq.testnet/1794636199986"
+    },
+    {
+      "name": "the vine records that post next to the link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "the contract posted each payment, mentioning the payee",
+      "ok": true,
+      "detail": "3 posts"
+    },
+    {
+      "name": "with a record, the same shares are now inside the earned limits",
+      "ok": true,
+      "detail": "Auto Auto"
+    },
+    {
+      "name": "both payments were paid with no second steward",
+      "ok": true,
+      "detail": "Paid Paid",
+      "tx": "https://testnet.nearblocks.io/txns/7ue6svrfJrvjAtz8BPYrG8zKmSnv6mMq4hA9DiA7rEUj"
+    },
+    {
+      "name": "again the only vote on the DAO is Grapevine's",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "a payment made at once adds a point, but only a second approval raises the limit",
+      "ok": true,
+      "detail": "limit 0.1"
+    },
+    {
+      "name": "what was paid at once comes out of the period's allowance",
+      "ok": true,
+      "detail": "0 NEAR left of 0.1"
+    },
+    {
+      "name": "a share inside the earned limit but over what is left of it this period needs a second steward",
+      "ok": true,
+      "detail": "0.1 NEAR, limit 0.1, left 0"
+    },
+    {
+      "name": "a fake link between the doer and an honest relay halves the honest share",
+      "ok": true,
+      "detail": "0.025"
+    },
+    {
+      "name": "leaving the fake link out restores it",
+      "ok": true,
+      "detail": "0.05"
+    },
+    {
+      "name": "an account with a record cannot be left out",
+      "ok": true,
+      "detail": "ERR_CANNOT_LEAVE_OUT_A_RECORD",
+      "tx": "https://testnet.nearblocks.io/txns/4P6eJa2p8Q6sPftwvzjaCUNzsi72cXkm5Rou4rox7njp"
+    },
+    {
+      "name": "the reason for leaving a link out is public on the quest",
+      "ok": true,
+      "detail": "Made minutes before the claim, no history",
+      "tx": "https://testnet.nearblocks.io/txns/A1kAk42pp31Q2qpt7z3BY6nfjR4cUzEyg1H4S1RWf8AP"
+    },
+    {
+      "name": "the fake account gets nothing, and the unknown doer still needs a second steward",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "a steward can decline a payment before it is filed",
+      "ok": true,
+      "detail": "declined by tomas.grapevine-hq.testnet: The translation was machine output with errors",
+      "tx": "https://testnet.nearblocks.io/txns/9PDtJTPHdpkAHnFtUSDak45EPS5xcmhhVJF2SNGLYjz9"
+    },
+    {
+      "name": "a declined payment gives its share back to the budget",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "a declined payment cannot be pushed",
+      "ok": true,
+      "detail": "ERR_NOTHING_TO_ADVANCE",
+      "tx": "https://testnet.nearblocks.io/txns/KnJPeQsz7qGNyEd9vDZokdiYkJYjDKUBhVpms4FocsS"
+    },
+    {
+      "name": "a larger share than a second steward has approved before needs a second steward again",
+      "ok": true,
+      "detail": "0.05 NEAR",
+      "tx": "https://testnet.nearblocks.io/txns/4i7VrVUYzbUCZS5GYvcyphgF2RvipjJmPCnXKpnMEDfn"
+    },
+    {
+      "name": "the honest relay is still paid its full share",
+      "ok": true,
+      "detail": "Paid"
+    },
+    {
+      "name": "the quest closes once every payment is paid or declined",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "a steward cannot countersign a payment to themselves",
+      "ok": true,
+      "detail": "ERR_OWN_PAYMENT",
+      "tx": "https://testnet.nearblocks.io/txns/7kAJSFVvDAneCDWK3BfBy5CPdb3pCSZMktoYp56TtTtd"
+    },
+    {
+      "name": "and the accepting steward cannot either, so two stewards cannot pay each other alone",
+      "ok": true,
+      "detail": "ERR_SAME_STEWARD",
+      "tx": "https://testnet.nearblocks.io/txns/7ctedeKtEky8S814GrwKPAiG4jSCFVS4S2m5R5khEJ67"
+    },
+    {
+      "name": "the payee cannot decline their own payment to dodge the record",
+      "ok": true,
+      "detail": "ERR_OWN_PAYMENT",
+      "tx": "https://testnet.nearblocks.io/txns/DczLCygJ3jRaDwatCaaQAHuTH4yF7ddtA8HGT6ikN23z"
+    },
+    {
+      "name": "the stuck payment is declined and the money stays put",
+      "ok": true,
+      "detail": "",
+      "tx": "https://testnet.nearblocks.io/txns/LfCiaQ4ekpZ7VWTZxwwSytSAHTbWFi5JSmvWtDWAG2V"
+    },
+    {
+      "name": "a steward cannot open a quest above the quest cap",
+      "ok": true,
+      "detail": "ERR_OVER_QUEST_CAP",
+      "tx": "https://testnet.nearblocks.io/txns/HBXMGsXZZcaKa9nP8YHEuXBPniEGpMeCrUbBYekAfmCK"
+    },
+    {
+      "name": "an outsider cannot open a quest",
+      "ok": true,
+      "detail": "ERR_NOT_A_STEWARD",
+      "tx": "https://testnet.nearblocks.io/txns/AmgnnSmr8zr2nV1JzoVC2vPUP3qfkzVrQYrkGGNXQnLs"
+    },
+    {
+      "name": "a reward too small to pay anyone is refused",
+      "ok": true,
+      "detail": "ERR_REWARD_TOO_SMALL",
+      "tx": "https://testnet.nearblocks.io/txns/6HcMrGN5djtLBDs1gkrXAQbJYd6S9Q21GF1uU1uDACXd"
+    },
+    {
+      "name": "a deadline in the past is refused",
+      "ok": true,
+      "detail": "ERR_DEADLINE",
+      "tx": "https://testnet.nearblocks.io/txns/9Tkb9FUQzMpfWJuHt4UFtxfaz82iUutjBg2dir1AREXa"
+    },
+    {
+      "name": "only the DAO can change its board",
+      "ok": true,
+      "detail": "ERR_NO_BOARD",
+      "tx": "https://testnet.nearblocks.io/txns/6gMatFqAQb9Mx7dkYHZt6eiobTrfhxbMZq7QjEfUx4Gd"
+    },
+    {
+      "name": "nobody else can open a board on this copy: it serves one DAO",
+      "ok": true,
+      "detail": "ERR_NOT_THIS_DAO",
+      "tx": "https://testnet.nearblocks.io/txns/CN3u5NJbKPg5JRrWwhnm28jFZPF5ca1UFBE39NJRzVhB"
+    },
+    {
+      "name": "the copy names the one DAO it serves",
+      "ok": true,
+      "detail": "riverside-coop.sputnikv2.testnet"
+    },
+    {
+      "name": "only the DAO can bar an account",
+      "ok": true,
+      "detail": "ERR_NO_BOARD",
+      "tx": "https://testnet.nearblocks.io/txns/6EBzPaUHQr6GBJwnRXSSTQ8Cx2ynns75deYt8bK7yqxS"
+    },
+    {
+      "name": "only the DAO can abandon a payment",
+      "ok": true,
+      "detail": "ERR_NO_BOARD",
+      "tx": "https://testnet.nearblocks.io/txns/2y85vFBrWeFR3BqnVApZsw31HRX5qWCgndA5hzqBSVmZ"
+    },
+    {
+      "name": "only the DAO can take the float",
+      "ok": true,
+      "detail": "ERR_NO_BOARD",
+      "tx": "https://testnet.nearblocks.io/txns/4bV1y7cV3Bgq3SXQEmPqHHo8Ts1Gwg1pWew3MP4u4NrJ"
+    },
+    {
+      "name": "closing an open quest gives its whole reward back to the budget",
+      "ok": true,
+      "detail": "",
+      "tx": "https://testnet.nearblocks.io/txns/7Gyh5ztfbzgFWbGvGf6BQsfLw4BHP7AZm8qS4q7gfD2N"
+    },
+    {
+      "name": "a closed quest takes no more passes",
+      "ok": true,
+      "detail": "ERR_QUEST_NOT_OPEN",
+      "tx": "https://testnet.nearblocks.io/txns/EYp1P7qLCZyVyWwEESVE1fWt1G9wFXjGnqczJbNPyBhW"
+    },
+    {
+      "name": "an outsider cannot pause the board",
+      "ok": true,
+      "detail": "ERR_NOT_A_STEWARD",
+      "tx": "https://testnet.nearblocks.io/txns/2WeNeatBL7NnsjL6G6YMeyakXCv82YAgdrm891z1RNSB"
+    },
+    {
+      "name": "one steward pauses the board",
+      "ok": true,
+      "detail": "",
+      "tx": "https://testnet.nearblocks.io/txns/ATKWBNduZTnnXBPTbQGrjE8H5WFB9MqKN9EuvrZTj1bX"
+    },
+    {
+      "name": "a paused board opens no quests",
+      "ok": true,
+      "detail": "ERR_PAUSED",
+      "tx": "https://testnet.nearblocks.io/txns/FPSTLSM3qUKyEojsTu6crNj7irJvgBbT7iG7JxXsq3ZX"
+    },
+    {
+      "name": "a steward alone cannot resume it",
+      "ok": true,
+      "detail": "ERR_NO_BOARD",
+      "tx": "https://testnet.nearblocks.io/txns/B7ptUxdnhCxUMmJpw9NWcYtjRpiRR86aCYvTWzZu764q"
+    },
+    {
+      "name": "the DAO's own vote resumes it",
+      "ok": true,
+      "detail": "proposal 19",
+      "tx": "https://testnet.nearblocks.io/txns/HYbaZ66keZbBBkJcDXKe9BRdtcxXDoNLQnfbBnBNf2PD"
+    },
+    {
+      "name": "the DAO itself opens a quest above the steward cap",
+      "ok": true,
+      "detail": "quest 17, proposal 20",
+      "tx": "https://testnet.nearblocks.io/txns/82PHn24DwNKJtrKzzrreM2rLBoS1yMnFtsfnkq4wd1bo"
+    },
+    {
+      "name": "its doer share is above the countersign cap, so the route is the DAO's vote",
+      "ok": true,
+      "detail": "1.2 NEAR",
+      "tx": "https://testnet.nearblocks.io/txns/5PrXHPLVAoKVuJYw5equS2dzT6ukwHM1REXbM51S5tiS"
+    },
+    {
+      "name": "Grapevine files the transfer and does not vote",
+      "ok": true,
+      "detail": "proposal 21",
+      "tx": "https://testnet.nearblocks.io/txns/HAWmfkWy99TxSGDohqmFMfi4Tjtj6UYWT8hjmVxgWfJg"
+    },
+    {
+      "name": "Grapevine will not vote on it however often it is asked",
+      "ok": true,
+      "detail": "ERR_WAITING_FOR_THE_DAO_VOTE",
+      "tx": "https://testnet.nearblocks.io/txns/52Fxk7g3ipMHjRNnifzDN4BL2UaDQbDxWGn8e7Af2TW"
+    },
+    {
+      "name": "a countersign does not apply to it",
+      "ok": true,
+      "detail": "ERR_NOT_WAITING_FOR_A_COUNTERSIGN",
+      "tx": "https://testnet.nearblocks.io/txns/ADDyzGmCfwguFWTBR5aH7cKK1sGc8zht8mBBN5efEHWE"
+    },
+    {
+      "name": "until the council votes, nothing changes",
+      "ok": true,
+      "detail": "waiting for votes on the DAO"
+    },
+    {
+      "name": "the council passes it with its own votes, and Grapevine's is not among them",
+      "ok": true,
+      "detail": "{\"noor.grapevine-hq.testnet\":\"Approve\",\"tomas.grapevine-hq.testnet\":\"Approve\"}",
+      "tx": "https://testnet.nearblocks.io/txns/PpQMa8BmHmxXncfXvkJVsGoTozYfQSqizDjF6paaGud"
+    },
+    {
+      "name": "Grapevine notes the approval",
+      "ok": true,
+      "detail": "",
+      "tx": "https://testnet.nearblocks.io/txns/EPuqgEwJKpwfSWwPFyxh2TQDn3Cb6h1rQt5EFjJ4vhcW"
+    },
+    {
+      "name": "and records it as paid on a later look",
+      "ok": true,
+      "detail": "",
+      "tx": "https://testnet.nearblocks.io/txns/9wPgESi5iUu5cvAQ8iC34omeGxJUwngxsADzZbs2Ac8G"
+    },
+    {
+      "name": "the doer received the full share",
+      "ok": true,
+      "detail": "1.2"
+    }
+  ]
+}

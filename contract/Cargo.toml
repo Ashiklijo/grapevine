@@ -1,0 +1,30 @@
+[package]
+name = "grapevine"
+version = "1.0.0"
+edition = "2021"
+license = "MIT"
+description = "Word-of-mouth quests for Sputnik DAOs: the treasury pays whoever gets it done, and everyone who passed the word along."
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# `legacy` provides the write-through collections, so env::storage_usage() is exact when storage is charged.
+near-sdk = { version = "5.30", features = ["legacy"] }
+grapevine-logic = { path = "logic" }
+
+[dev-dependencies]
+# The contract's own tests run it against near-sdk's mocked runtime. On Windows this needs the MSVC toolchain.
+near-sdk = { version = "5.30", features = ["legacy", "unit-testing"] }
+
+[workspace]
+members = ["logic"]
+
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+lto = true
+debug = false
+panic = "abort"
+overflow-checks = true
+strip = true

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grapevine</title>
+    <meta name="description" content="Word-of-mouth quests for Sputnik DAOs on NEAR: the treasury pays whoever gets it done, and everyone who passed the word along." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='11' cy='13' r='6' fill='%235b3d8a'/%3E%3Ccircle cx='21' cy='13' r='6' fill='%235b3d8a'/%3E%3Ccircle cx='16' cy='22' r='6' fill='%235b3d8a'/%3E%3Cpath d='M16 8 C16 4 19 2 23 2' stroke='%232f6b3a' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="#board" aria-label="Grapevine, home">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+          <circle cx="11" cy="13" r="6" fill="#5b3d8a" />
+          <circle cx="21" cy="13" r="6" fill="#5b3d8a" />
+          <circle cx="16" cy="22" r="6" fill="#5b3d8a" />
+          <path d="M16 8 C16 4 19 2 23 2" stroke="#2f6b3a" stroke-width="2.5" fill="none" stroke-linecap="round" />
+        </svg>
+        <span>Grapevine</span>
+      </a>
+      <nav id="nav"></nav>
+      <div id="who"></div>
+    </header>
+    <div id="strip"></div>
+    <main id="app"><p class="loading">Reading the board from NEAR…</p></main>
+    <div id="toasts" aria-live="polite"></div>
+    <footer class="foot">
+      <span>Grapevine reads NEAR and near.social directly. There is no server between you and the chain.</span>
+      <span><a href="#install">Install it on your DAO</a> · <a href="#limits">What it cannot do</a> · <a href="skill.md">For AI agents</a></span>
+    </footer>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

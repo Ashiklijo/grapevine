@@ -1,0 +1,10 @@
+{
+  "network": "testnet",
+  "deployed": true,
+  "contract": "v1.grapevine-hq.testnet",
+  "dao": "riverside-coop.sputnikv2.testnet",
+  "hq": "grapevine-hq.testnet",
+  "site": "",
+  "demo": false,
+  "personas": []
+}
