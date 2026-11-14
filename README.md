@@ -9,6 +9,7 @@ A DAO's steward posts what the community needs and what the treasury will pay fo
 - **Network:** NEAR testnet
 - **Contract:** `v1.grapevine-hq.testnet` · **Demo DAO:** `riverside-coop.sputnikv2.testnet`
 - **Built at:** NEAR HACKATHON, 1 to 14 November 2026
+- **Live board, read-only:** https://ashiklijo.github.io/grapevine/ (GitHub Pages, reading testnet and FastData straight from your browser)
 - **Demo video:** [`demo/grapevine-demo.mp4`](demo/grapevine-demo.mp4), recorded from the real site against the live testnet contract
 
 ## The problem
@@ -56,7 +57,13 @@ The split is the one MIT used to win DARPA's Network Challenge in 2009 ([Pickard
 
 ## Try it: do X, see Y
 
-Needs Node 20 or later. Run `npm ci` once.
+**0. Open the quest from the video. Nothing to install.**
+
+Open https://ashiklijo.github.io/grapevine/web/#quest/21
+
+See: the vine Noor → Bea → Kofi → Rosa; three payments, 1 NEAR to Rosa and 0.5 to Kofi countersigned by Tomas, 0.25 to Bea paid at once inside her earned limit, each linked to its `Transfer` proposal on the DAO (open one to read it from the DAO itself); and the near.social posts of the chain, including the ones written by the contract. Records shows each person's points and the payment behind every point. The page reads testnet's RPC and FastData directly; there is no server behind it.
+
+The steps below need Node 20 or later. Run `npm ci` once.
 
 **1. Check what is on chain. No account needed.**
 
@@ -222,6 +229,7 @@ In an explorer, every receipt that carries a post shows as failed, and that is b
 
 | Path | What |
 |---|---|
+| `index.html`, `.nojekyll` | GitHub Pages: the root page forwards to the board in `web/`, served as it is |
 | `contract/src/lib.rs` | The contract: storage, permissions and promises |
 | `contract/src/tests.rs` | The contract run on near-sdk's mocked runtime, with the test playing the DAO |
 | `contract/logic/src/lib.rs` | Every decision about money, as pure functions, with tests |

@@ -4,11 +4,11 @@ Deadline: 14 November 2026, 23:59 UTC. Only a person can post and submit, so eve
 
 ## What only you can do
 
-- [ ] **Make the repository public** before the deadline, and check that no key is in its history. Nothing in this folder contains one: the scripts read keys from `~/.near-credentials`.
+- [x] **Make the repository public** before the deadline, and check that no key is in its history. Done: https://github.com/Ashiklijo/grapevine is public, and nothing in it contains a key: the scripts read keys from `~/.near-credentials`.
 - [ ] **Post on X** with the video attached. The draft is below.
 - [ ] **Give your mainnet NEAR account** for the payout.
 - [ ] **Submit** through <https://nearhackathon.com/#apply>, once, after the repository is public and the post is up. A submission cannot be edited.
-- [ ] Optional: **host the site.** `web/` is static. Any static host works, for example GitHub Pages serving `web/`. A hosted copy is read-only: it shows the live board, vines, payments and records. Then record its address on the board with one DAO proposal, so posts link to it (`update_board` with `site` set).
+- [x] **Host the site.** Done: GitHub Pages serves the repository, and https://ashiklijo.github.io/grapevine/ opens the read-only board. Keep it up through judging (2026-11-18). Optional: record its address on the board with one DAO proposal, so the contract's posts link to it (`update_board` with `site` set).
 
 ## Demo video
 
@@ -77,8 +77,8 @@ Keep these out of the repository once filled in, because they contain personal d
 - [x] Live deployment on testnet ([results](TESTNET.md))
 - [x] End-to-end checks on testnet, 102 of 102 (`deployments/testnet-e2e.json`)
 - [x] Demo video made (`demo/grapevine-demo.mp4`)
-- [ ] A hosted copy of the site, and its link in the README
-- [ ] Repository public, with no keys in its history
+- [x] A hosted copy of the site, and its link in the README (https://ashiklijo.github.io/grapevine/)
+- [x] Repository public, with no keys in its history (https://github.com/Ashiklijo/grapevine)
 - [ ] Demo post live on X
 - [ ] Your mainnet payout account
 - [ ] Open the demo DAO in Trezu's local testnet mode and check a payment shows as a payment request (not done: the proposals use the description format Trezu's parser reads)
