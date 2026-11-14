@@ -184,7 +184,7 @@ WrapStyle: 2
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Cap,Segoe UI Semibold,50,&H00FFFFFF,&H00FFFFFF,&H20161B1D,&H20161B1D,0,0,0,0,100,100,0,0,3,16,0,2,140,140,54,1
-Style: Note,Segoe UI,28,&H00FFFFFF,&H00FFFFFF,&H50161B1D,&H50161B1D,0,0,0,0,100,100,0,0,3,9,0,9,60,44,36,1
+Style: Note,Segoe UI,28,&H00FFFFFF,&H00FFFFFF,&H50161B1D,&H50161B1D,0,0,0,0,100,100,0,0,3,9,0,9,60,44,150,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text

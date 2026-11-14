@@ -47,6 +47,19 @@ async function as(person, hash) {
 }
 const questHash = () => `quest/${take.quest}`;
 const node = (account) => page.locator(`.vine .node[data-account^="${account}."]`);
+
+/**
+ * The page fills in "Who told you?" from the near.social follow graph. Make sure it names the
+ * person the story says, so the chain is the story's even if a follow has not been read yet.
+ */
+async function heardFrom(person) {
+  const select = page.locator('form[data-form="pass"] select[name="via"]');
+  const want = await select.locator(`option[value^="${person}."]`).first().getAttribute("value", { timeout: 15_000 });
+  if ((await select.inputValue()) === want) return;
+  await moveTo(page, select);
+  await select.selectOption(want);
+  await pause(page, 600);
+}
 const payRow = (name) => page.locator(".pay", { hasText: name });
 
 const shots = {
@@ -127,6 +140,7 @@ const shots = {
     await as(CAST.middle, questHash());
     await page.waitForSelector('form[data-form="pass"]');
     shot.mark("panel");
+    await heardFrom(CAST.first);
     await moveTo(page, page.locator('select[name="via"]'));
     await pause(page, 1800);
     const suggestion = page.locator(".suggest .pick").first();
@@ -148,6 +162,7 @@ const shots = {
     await as(CAST.doer, questHash());
     await page.waitForSelector('form[data-form="claim"]');
     shot.mark("panel");
+    await heardFrom(CAST.middle);
     await pause(page, 1500);
     await typeInto(page, page.locator('form[data-form="claim"] textarea'), "I am free on Saturday morning, and I have interpreted for community meetings before. Kofi sent me this.", 14);
     shot.mark("typed");
@@ -208,13 +223,18 @@ const shots = {
     await buttons.first().waitFor({ timeout: 60_000 });
     shot.mark("ready");
     await pause(page, 1500);
+    // Usually two newcomers wait for a countersign. A retake may find only the one left.
+    const waiting = await buttons.count();
     await clickOn(page, buttons.first());
     shot.mark("sign1");
-    await page.waitForFunction(() => document.querySelectorAll('button[data-act="countersign"]').length === 1, null, { timeout: 120_000 });
-    await pause(page, 800);
-    await clickOn(page, page.locator('button[data-act="countersign"]').first());
+    if (waiting > 1) {
+      await page.waitForFunction((n) => document.querySelectorAll('button[data-act="countersign"]').length < n, waiting, { timeout: 300_000 });
+      await pause(page, 800);
+      await clickOn(page, page.locator('button[data-act="countersign"]').first());
+    }
     shot.mark("sign2");
-    await page.waitForFunction(() => document.querySelectorAll(".pay-paid").length >= 3, null, { timeout: 240_000 });
+    // Free testnet RPCs can be slow to answer; the edit squeezes the wait.
+    await page.waitForFunction(() => document.querySelectorAll(".pay-paid").length >= 3, null, { timeout: 600_000 });
     shot.mark("allPaid");
     await pause(page, 1500);
     await scrollTo(page, page.locator("#vine"), 150);
@@ -296,7 +316,9 @@ const shots = {
   },
 };
 
-const order = ["story", "board", "first", "middle", "doer", "saturday", "accept", "second", "proposal", "records", "cheat", "social", "close"];
+// Recording order, not story order: the edit places each shot by name. The cheat attempts are
+// aimed at the open quest, so they are recorded while the quest is still open, before the accept.
+const order = ["story", "board", "first", "middle", "doer", "cheat", "saturday", "accept", "second", "proposal", "records", "social", "close"];
 for (const name of order) {
   if (only && !only.includes(name)) continue;
   console.log(`recording ${name}...`);

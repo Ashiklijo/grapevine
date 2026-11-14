@@ -73,8 +73,11 @@ async function press(button, action, args, done) {
     const out = await act(action, args);
     if (out.ok) {
       toast(`${esc(done)} <a href="${esc(out.url)}" target="_blank" rel="noopener">See the transaction</a>`);
-    } else {
+    } else if (/ERR_[A-Z_]+/.test(out.refusal || "")) {
       toast(`The contract refused: <code>${esc(out.refusal)}</code>${out.url ? ` <a href="${esc(out.url)}" target="_blank" rel="noopener">See the transaction</a>` : ""}`, "bad", 12000);
+    } else {
+      // No contract error code: the transaction never got an answer, so nothing was decided. Try again.
+      toast(`The network did not answer, so nothing changed. Try again. <code>${esc(out.refusal || "")}</code>`, "bad", 12000);
     }
     await refresh(true);
     return out;
@@ -759,9 +762,13 @@ async function route() {
 
 /** Re-read the page's data and redraw only what changed, so nothing you are typing is lost. */
 async function refresh(force) {
+  // A poll that was already reading when the page changed must not draw over the new page.
+  const view = S.view;
+  const moved = () => S.view !== view;
   try {
-    if (S.view?.name === "quest") {
-      const data = await loadQuest(S.view.id);
+    if (view?.name === "quest") {
+      const data = await loadQuest(view.id);
+      if (moved()) return;
       const sig = JSON.stringify([data.quest.status, data.quest.links, data.quest.claims, data.payouts.map((p) => [p.phase, p.countersigned_by, p.proposal_id])]);
       if (sig === S.sig && !force) return;
       const changedShape = sig !== S.sig;
@@ -769,12 +776,19 @@ async function refresh(force) {
       $("#vine").innerHTML = vineHtml(data);
       $("#payments").innerHTML = paymentsHtml(data);
       const typing = document.activeElement && $("#actions").contains(document.activeElement) && /TEXTAREA|INPUT|SELECT/.test(document.activeElement.tagName);
-      if (changedShape && !typing) $("#actions").innerHTML = await actionsHtml(data, S.view.query);
-      $("#posts").innerHTML = postsHtml(await loadPosts(data));
+      if (changedShape && !typing) {
+        const actions = await actionsHtml(data, view.query);
+        if (moved()) return;
+        $("#actions").innerHTML = actions;
+      }
+      const posts = postsHtml(await loadPosts(data));
+      if (moved()) return;
+      $("#posts").innerHTML = posts;
       const chipHost = $(".quest-main .card-top");
       if (chipHost) chipHost.firstElementChild.outerHTML = statusChip(data.quest);
-    } else if (S.view?.name === "board" || !S.view?.name) {
+    } else if (view?.name === "board" || !view?.name) {
       const { board, quests, treasury } = await loadBoard();
+      if (moved()) return;
       const sig = JSON.stringify([quests.map((x) => [x.id, x.status, x.links, x.claims, x.paid]), String(treasury), board.committed]);
       if (sig !== S.sig || force) {
         const open = $(".open-form")?.open;

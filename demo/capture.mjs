@@ -19,9 +19,10 @@ export async function openBrowser() {
 // Headless Chrome draws no pointer, so the page draws one. It also draws a ripple on each click.
 const POINTER = `
 (() => {
-  const ZOOM = Number(localStorage.getItem('demo-zoom') || 1);
   const ready = () => {
     if (window.__pointer || !document.documentElement) return;
+    // Read here, not above: on the first page the zoom is stored by a script that runs after this one.
+    const ZOOM = Number(localStorage.getItem('demo-zoom') || 1);
     if (ZOOM !== 1) document.documentElement.style.zoom = String(ZOOM);
     const p = document.createElement('div');
     p.id = 'demo-pointer';

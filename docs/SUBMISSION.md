@@ -12,7 +12,7 @@ Deadline: 14 November 2026, 23:59 UTC. Only a person can post and submit, so eve
 
 ## Demo video
 
-`demo/grapevine-demo.mp4`: 1920x1080, H.264 and AAC, captions burned in because X plays videos muted. A standard X account can attach up to 2 minutes 20 seconds.
+`demo/grapevine-demo.mp4`: 1 minute 37 seconds, 1920x1080, H.264 and AAC, 6.6 MB, captions burned in because X plays videos muted. A standard X account can attach up to 2 minutes 20 seconds. Checked frame by frame (no black frames or one-frame flashes) and by a speech recogniser against the script.
 
 Everything on screen is the real site in demo mode against the live testnet contracts. Every click is a transaction. The cut squeezes the seconds spent waiting for blocks, and a note in the corner says so. The closing card says the tokens are test tokens, the people are invented, and the narration is an AI voice (Chatterbox, an open-source model, with its built-in voice). To use a person's voice, have them read the right-hand column and re-cut with `python demo/edit.py`.
 
@@ -76,7 +76,7 @@ Keep these out of the repository once filled in, because they contain personal d
 - [x] Independent review of the contract, two passes, findings fixed (README, "Security review")
 - [x] Live deployment on testnet ([results](TESTNET.md))
 - [x] End-to-end checks on testnet, 102 of 102 (`deployments/testnet-e2e.json`)
-- [ ] Demo video made (`demo/grapevine-demo.mp4`)
+- [x] Demo video made (`demo/grapevine-demo.mp4`)
 - [ ] A hosted copy of the site, and its link in the README
 - [ ] Repository public, with no keys in its history
 - [ ] Demo post live on X

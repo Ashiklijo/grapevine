@@ -1,7 +1,7 @@
 // Reads NEAR straight from public RPC. The site has no backend of its own.
 
 const RPCS = {
-  testnet: ["https://rpc.testnet.fastnear.com", "https://test.rpc.fastnear.com", "https://near-testnet.drpc.org"],
+  testnet: ["https://rpc.testnet.fastnear.com", "https://rpc.testnet.near.org", "https://near-testnet.drpc.org", "https://test.rpc.fastnear.com"],
   mainnet: ["https://free.rpc.fastnear.com", "https://near.drpc.org", "https://rpc.mainnet.near.org"],
 };
 const EXPLORERS = { testnet: "https://testnet.nearblocks.io", mainnet: "https://nearblocks.io" };

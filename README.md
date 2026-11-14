@@ -112,7 +112,7 @@ node --test scripts/
 
 See: 10 tests pass. They check, with no network, that what this project writes to near.social follows the `social-kv/1` standard key for key, and that the reader handles deleted posts, unfollows and bad references.
 
-**5. Run the whole thing on a DAO you control. About 13 test NEAR, from two faucet accounts.**
+**5. Run the whole thing on a DAO you control. About 17 test NEAR, from two faucet accounts.**
 
 See [docs/DEPLOY.md](docs/DEPLOY.md). `scripts/deploy.mjs` creates a Sputnik DAO on the unmodified factory, installs Grapevine through the DAO's own votes, and `scripts/e2e.mjs` then runs every path on live testnet: a paid chain, earned trust paying at once, a fake chain, a council vote, a pause, and the refusals.
 
@@ -148,6 +148,7 @@ See: `data/bounties-summary.json` with the numbers in the table above, moved by 
 | Every path on live testnet: paid chain, earned trust paying at once, fake chain, decline, caps, pause and resume, the DAO's own vote above the cap, and the refusals | Ran | `node scripts/e2e.mjs`: 102 of 102 checks on 2026-11-14. One timing check could not run because the RPC was slow; it says so, and the contract tests cover it. Results in [docs/TESTNET.md](docs/TESTNET.md) |
 | Read-only proof of what is on chain: every paid payment matches an approved DAO proposal, every point is a paid payment | Ran | `node scripts/verify.mjs`, all checks passed |
 | The contract's own near.social posts, indexed by FastData on testnet with the contract as author | Ran | checked by `scripts/e2e.mjs` and `scripts/verify.mjs` |
+| Demo video, recorded from the real site in demo mode against the live testnet contract | Ran | [`demo/grapevine-demo.mp4`](demo/grapevine-demo.mp4), 1 min 37 s; quest #21 on the board is the one in the video |
 <!-- status:end -->
 
 ## Contract

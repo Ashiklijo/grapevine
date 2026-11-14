@@ -10,13 +10,22 @@ const d = deployment();
 const e2eFile = path.join(ROOT, "deployments", "testnet-e2e.json");
 const e2e = fs.existsSync(e2eFile) ? JSON.parse(fs.readFileSync(e2eFile, "utf8")) : null;
 
+/** view_account, from the first endpoint that answers with a result. */
 async function account(id) {
-  const res = await fetch(RPCS[NETWORK][1], {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "query", params: { request_type: "view_account", finality: "final", account_id: id } }),
-  });
-  return (await res.json()).result;
+  for (const url of RPCS[NETWORK]) {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "query", params: { request_type: "view_account", finality: "final", account_id: id } }),
+      });
+      const body = await res.json();
+      if (body.result) return body.result;
+    } catch {
+      // Try the next endpoint.
+    }
+  }
+  throw new Error(`no RPC endpoint answered for ${id}`);
 }
 
 const link = (id) => `[\`${id}\`](${accountUrl(id)})`;

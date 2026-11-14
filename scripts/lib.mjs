@@ -19,7 +19,9 @@ export const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 export const NETWORK = process.env.NEAR_NETWORK || "testnet";
 
 export const RPCS = {
-  testnet: ["https://near-testnet.drpc.org", "https://rpc.testnet.fastnear.com", "https://test.rpc.fastnear.com"],
+  // On 2026-11-14 drpc answered many transactions with 500, and FastNEAR's free tier answered 429
+  // when several jobs shared one IP. So the providers alternate, and each failure falls to another.
+  testnet: ["https://rpc.testnet.fastnear.com", "https://rpc.testnet.near.org", "https://near-testnet.drpc.org", "https://test.rpc.fastnear.com"],
   mainnet: ["https://free.rpc.fastnear.com", "https://near.drpc.org", "https://rpc.mainnet.near.org"],
 };
 

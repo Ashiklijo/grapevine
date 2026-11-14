@@ -8,7 +8,7 @@
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
-import { NETWORK, ROOT, call, deployment, hasKey, keepFloat, keepFloats, loadAccount, log, readableError, txUrl, view } from "./lib.mjs";
+import { NETWORK, ROOT, accountUrl, call, deployment, hasKey, keepFloat, keepFloats, loadAccount, log, readableError, txUrl, view } from "./lib.mjs";
 import * as act from "./actions.mjs";
 import { PEOPLE } from "./people.mjs";
 
@@ -74,8 +74,18 @@ const outcome = (res, extra = {}) => ({
 /** What each demo button does. Every one is the same contract call a real member would sign. */
 const ACTIONS = {
   open_quest: async (who, a) => {
-    const opened = await act.openQuest(d, who, { title: a.title, brief: a.brief, reward: a.reward, days: a.days || 5, withPost: true });
-    return { ok: true, hash: opened.hash, url: txUrl(opened.hash), value: opened.id, post: opened.sponsorPost, postUrl: txUrl(opened.postHash) };
+    const before = Number((await view(d.contract, "totals")).quests);
+    try {
+      const opened = await act.openQuest(d, who, { title: a.title, brief: a.brief, reward: a.reward, days: a.days || 5, withPost: true });
+      return { ok: true, hash: opened.hash, url: txUrl(opened.hash), value: opened.id, post: opened.sponsorPost, postUrl: txUrl(opened.postHash) };
+    } catch (err) {
+      // An RPC error can arrive after the transaction went through. Look on chain before calling it a failure.
+      const recent = await view(d.contract, "list_quests", { dao: d.dao, from_index: before, limit: 5 });
+      const mine = recent.find((q) => q.sponsor === who && q.title === String(a.title).trim());
+      if (!mine) throw err;
+      log(`open_quest: the RPC reported "${err.message.split("\n")[0]}", but quest ${mine.id} is open on chain`);
+      return { ok: true, hash: null, url: accountUrl(d.contract), value: mine.id, post: mine.sponsor_post };
+    }
   },
   pass_on: async (who, a) => {
     const res = await act.passOn(d, who, a.quest_id, a.via || null, { withPost: true, note: a.note, mentions: a.mentions || [] });
@@ -121,7 +131,16 @@ async function handleAct(body) {
   const who = personas().find((p) => p.key === as || p.account === as);
   if (!who) throw new Error("not a demo account");
   if (!ACTIONS[action]) throw new Error("unknown action");
-  return inTurn(who.account, () => ACTIONS[action](who.account, a));
+  const started = Date.now();
+  const took = () => `${((Date.now() - started) / 1000).toFixed(1)}s`;
+  try {
+    const out = await inTurn(who.account, () => ACTIONS[action](who.account, a));
+    log(`${action} as ${who.key}: ${out.ok ? "ok" : `refused, ${out.refusal}`} in ${took()}`);
+    return out;
+  } catch (err) {
+    log(`${action} as ${who.key}: failed in ${took()}: ${err.message.split("\n")[0]}`);
+    throw err;
+  }
 }
 
 // The keeper: anyone may push a decided payment forward. In the demo this server does it.
@@ -217,6 +236,7 @@ server.listen(port, "127.0.0.1", () => {
       // The "Try to cheat" page signs steward calls as these two, and a call reserves its gas up front.
       for (const id of d.people.others.filter((a) => /^(mallory|sock)\./.test(a))) await keepFloat(loadAccount(d.hq), id, "0.5");
     })().catch((err) => log(`could not top up the demo accounts: ${err.message}`));
-    setInterval(keep, 4000);
+    // Every 8 seconds: often enough to settle a payment within a minute, and light on free RPC tiers.
+    setInterval(keep, 8000);
   }
 });

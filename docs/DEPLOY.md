@@ -7,14 +7,14 @@ This creates a Sputnik DAO you control, installs Grapevine on it through the DAO
 - Node 20 or later, and `npm ci` run once in the repository.
 - Rust with the `wasm32-unknown-unknown` target, and optionally [cargo-near](https://github.com/near/cargo-near).
 - [near-cli-rs](https://github.com/near/near-cli-rs), to create the first account.
-- About 13 test NEAR. The faucet gives 10 per new account, so make two accounts and send one's balance to the other.
+- About 17 test NEAR with the default 4 NEAR treasury. The faucet gives 10 per new account, so make two accounts and fold one into the other: `node scripts/bootstrap.mjs <name>-hq.testnet --extra 1` does both.
 
 | Cost | Test NEAR |
 |---|---|
 | The contract's account (1 NEAR per 100 KB of code) | 3.4 |
 | The DAO, made by the `sputnikv2.testnet` factory | 5.55 |
-| Gas floats for the demo accounts | 2.1 |
-| The treasury, for rewards | 1 or more |
+| Gas floats for the demo accounts, plus 0.7 when the live checks top up the two outsiders | 2.7 |
+| The treasury, for rewards (`GRAPEVINE_TREASURY`, 4 by default) | 4 |
 | The board's float, for proposal bonds and what callbacks store | 0.3 |
 
 ## Steps

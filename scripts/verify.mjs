@@ -15,13 +15,22 @@ const check = (name, ok, detail = "") => {
   console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? `  [${detail}]` : ""}`);
 };
 
+/** The account's access keys, from the first endpoint that answers with a result. */
 async function accessKeys(account) {
-  const res = await fetch(RPCS[NETWORK][1], {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "query", params: { request_type: "view_access_key_list", finality: "final", account_id: account } }),
-  });
-  return (await res.json()).result?.keys ?? [];
+  for (const url of RPCS[NETWORK]) {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "query", params: { request_type: "view_access_key_list", finality: "final", account_id: account } }),
+      });
+      const body = await res.json();
+      if (body.result) return body.result.keys ?? [];
+    } catch {
+      // Try the next endpoint.
+    }
+  }
+  return [];
 }
 
 console.log(`Grapevine ${await view(G, "version")} at ${G} on ${NETWORK}`);
